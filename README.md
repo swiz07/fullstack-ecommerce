@@ -11,6 +11,16 @@ A full-stack e-commerce application built with:
 
 More features will be added as development continues.
 
-Photo by <a href="https://unsplash.com/@davesvisuals?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Nagy David</a> on <a href="https://unsplash.com/photos/person-holding-light-bulb-in-tilt-shift-lens-eq8g6yqXjUI?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+## Image Credits
 
-Photo by <a href="https://unsplash.com/@chris_lynch_?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Lynch</a> on <a href="https://unsplash.com/photos/a-black-hoodie-that-says-ill-see-you-tomorrow-on-it-SXpun7pdECU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+### Light Bulb
+
+Photo by [Nagy David](https://unsplash.com/@davesvisuals) on [Unsplash](https://unsplash.com/photos/person-holding-light-bulb-in-tilt-shift-lens-eq8g6yqXjUI).
+
+Used for the **light bulb product** in the application.
+
+### Black Hoodie / Sweatshirt
+
+Photo by [Chris Lynch](https://unsplash.com/@chris_lynch_) on [Unsplash](https://unsplash.com/photos/a-black-hoodie-that-says-ill-see-you-tomorrow-on-it-SXpun7pdECU).
+
+Used for the **black hoodie/sweatshirt product** in the application.
