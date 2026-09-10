@@ -1,6 +1,6 @@
 # Cartora
 
-## Status
+![Cartora Screenshot](https://github.com/user-attachments/assets/e9bc982e-05b7-4d55-94b9-50f31d4fb04e)
 
 A full-stack e-commerce application built with:
 
@@ -8,10 +8,17 @@ A full-stack e-commerce application built with:
 - Django backend
 - PostgreSQL database
 - REST API integration
-
-The application is being developed step by step, with new features and improvements added throughout development.
+- JWT authentication
 
 ## Features
+
+### Authentication
+- User signup
+- User login
+- User logout
+- JWT authentication
+- Protected routes for authenticated users
+- Access and refresh token handling
 
 ### Products
 
