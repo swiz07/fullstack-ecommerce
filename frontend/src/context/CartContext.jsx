@@ -1,4 +1,5 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { authFetch, getAccessToken } from "../utils/auth";
 
 const CartContext = createContext();
 
@@ -8,18 +9,21 @@ export const CartProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([]);
     const [total, setTotal] = useState(0);
 
-    // Fetch cart from backend
+    // Fetch Cart from Backend
     const fetchCart = async () => {
         try {
-            const res = await fetch(`${BASEURL}/store/cart/`);
+            const res = await authFetch(`${BASEURL}/store/cart/`);
 
-            if (!res.ok) {
-                throw new Error("Failed to fetch cart");
+            if (res.status === 401) {
+                console.log("User is not authenticated");
+                setCartItems([]);
+                setTotal(0);
+                return;
             }
 
             const data = await res.json();
 
-            setCartItems(data.items || data.item || []);
+            setCartItems(data.items || []);
             setTotal(Number(data.total_price) || 0);
 
         } catch (error) {
@@ -27,20 +31,25 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+    // Fetch cart only if user is logged in
     useEffect(() => {
-        fetchCart();
+        const token = getAccessToken();
+
+        if (token) {
+            fetchCart();
+        }
     }, []);
 
     // Add Product to Cart
-    const addToCart = async (productID) => {
+    const addToCart = async (productId) => {
         try {
-            const res = await fetch(`${BASEURL}/store/cart/add/`, {
+            const res = await authFetch(`${BASEURL}/store/cart/add/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    product_id: productID,
+                    product_id: productId,
                 }),
             });
 
@@ -58,7 +67,7 @@ export const CartProvider = ({ children }) => {
     // Remove Product from Cart
     const removeFromCart = async (itemId) => {
         try {
-            const res = await fetch(`${BASEURL}/store/cart/remove/`, {
+            const res = await authFetch(`${BASEURL}/store/cart/remove/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -87,7 +96,7 @@ export const CartProvider = ({ children }) => {
         }
 
         try {
-            const res = await fetch(`${BASEURL}/store/cart/update/`, {
+            const res = await authFetch(`${BASEURL}/store/cart/update/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -109,10 +118,11 @@ export const CartProvider = ({ children }) => {
         }
     };
 
+    // Clear Cart
     const clearCart = () => {
         setCartItems([]);
         setTotal(0);
-    }
+    };
 
     return (
         <CartContext.Provider
